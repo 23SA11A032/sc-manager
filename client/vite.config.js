@@ -12,4 +12,8 @@ export default defineConfig({
             "/api": "http://localhost:3001",
         },
     },
+    preview: {
+        host: true,
+        port: 3000,
+    },
 });

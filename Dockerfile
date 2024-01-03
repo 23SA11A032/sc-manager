@@ -1,18 +1,18 @@
-FROM node:lts-alpine as build1
+FROM node:lts as build1
 WORKDIR /app
 COPY client/package.json .
-RUN yarn && yarn cache clean
+RUN yarn --frozen-lockfile && yarn cache clean
 COPY client .
 RUN yarn build
 
-FROM node:lts-alpine as build2 
+FROM node:lts as build2 
 WORKDIR /app
 COPY server/package.json .
-RUN yarn && yarn cache clean
+RUN yarn --frozen-lockfile && yarn cache clean
 COPY server .
 RUN yarn build
 
-FROM node:lts-alpine
+FROM node:lts
 WORKDIR /app
 COPY --from=build1 /app ./client
 COPY --from=build2 /app ./server

@@ -8,7 +8,7 @@ const router = Router();
 const signin = router;
 module.exports = { signin };
 
-router.post("/login", async (req, res) => {
+router.post("/auth/login", async (req, res) => {
     try {
         var { username, password } = req.body;
 

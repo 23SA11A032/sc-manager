@@ -31,6 +31,7 @@ import {
 import { useEffect, useState } from "react";
 import api from "../lib/api";
 import Logout from "../components/Logout";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Home() {
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -41,6 +42,7 @@ export default function Home() {
     const [loadingDelete, setLoadingDelete] = useState(false);
     const [isDeleteOpen, setIsDeleteOpen] = useState(false);
     const toast = useToast();
+    const navigate = useNavigate();
 
     useEffect(() => {
         loadData();
@@ -130,6 +132,13 @@ export default function Home() {
                             })
                         }
                     />
+                )}
+                {selected && (
+                    <a href={"/api/raw/" + selected.name} target="_blank">
+                        <Button variant={"outline"} w={"fit-content"}>
+                            Raw
+                        </Button>
+                    </a>
                 )}
             </Container>
 
